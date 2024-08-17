@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/stylesRegister.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Cadastro</h2>
+        <form id="registerForm">
+            <label for="name">Nome</label>
+            <div class="form-group">
+                <input autocomplete="off" type="text" id="name" name="name" placeholder="Digite seu nome" required>
+            </div>
+            <label for="email">Email</label>
+            <div class="form-group">
+                <input autocomplete="off" autocomplete="off" type="email" id="email" name="email" placeholder="Digite seu email" required>
+            </div>
+            <label for="password">Senha</label>
+            <div class="form-group">
+                <input autocomplete="off" type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                <button id="btn-password" type="button" class="toggle-password" onclick="togglePassword()">
+                    👁️
+                </button>
+            </div>
+            <label for="confirmPassword">Confirmar Senha</label>
+            <div class="form-group">
+                <input autocomplete="off" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha" required>
+                <button id="btn-confirm-password" type="button" class="toggle-password" onclick="toggleConfirmPassword()">
+                    👁️
+                </button>
+            </div>
+            <button type="submit" class="btn btn-register">Cadastrar</button>
+            <button type="button" onclick="login()" class="btn btn-login">Voltar para Login</button>
+        </form>
+    </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="errorMessage">
+                    <!-- Mensagem de erro será inserida aqui -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/scriptRegister.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

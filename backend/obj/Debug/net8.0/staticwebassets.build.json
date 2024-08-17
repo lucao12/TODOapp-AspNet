@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "jcbEbtug8/qcwbpnPidnOeRLOzRUIG9Ti/zx1XYR+qo=",
+  "Source": "Teste",
+  "BasePath": "_content/Teste",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Teste\\wwwroot",
+      "Source": "Teste",
+      "ContentRoot": "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Projetos\\TODOapp\\backend\\wwwroot\\",
+      "BasePath": "_content/Teste",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Projetos\\TODOapp\\backend\\wwwroot\\App_Data\\teste.db",
+      "SourceId": "Teste",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Projetos\\TODOapp\\backend\\wwwroot\\",
+      "BasePath": "_content/Teste",
+      "RelativePath": "App_Data/teste.db",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\App_Data\\teste.db"
+    }
+  ]
+}

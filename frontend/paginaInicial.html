@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styleInicio.css">
+</head>
+
+<body>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+
+    <div class="container">
+        <div id="taskSection" style="display: none;">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">Adicionar Nova
+                Tarefa
+            </button>
+            <button class="btn btn-secondary settings-btn" onclick="openEditUserModal()">
+                <img src="./img/2849830-gear-interface-multimedia-options-setting-settings_107986.ico" style="width: 20px; height: 20px;"/>
+            </button>
+            <div class="task-list" id="taskList"></div>
+        </div>
+
+        <div id="userSection" style="display: none;">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Adicionar Novo
+                Usuário</button>
+            <div class="user-list" id="userList"></div>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar nova tarefa -->
+    <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTaskModalLabel">Adicionar Nova Tarefa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTaskForm">
+                        <div class="form-group">
+                            <label for="title">Título:</label>
+                            <input type="text" id="title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Descrição:</label>
+                            <textarea id="description" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateLimit">Dia Limite:</label>
+                            <input type="datetime-local" id="dateLimit" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Prioridade:</label>
+                            <select id="priority" class="form-control" required>
+                                <option value="alta">Alta</option>
+                                <option value="baixa">Baixa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" id="isCompleted" class="form-check-input">
+                                <label for="isCompleted" class="form-check-label">Completo</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar novo usuário -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Adicionar Novo Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm">
+                        <div class="form-group">
+                            <label for="userName">Nome:</label>
+                            <input type="text" id="userName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userEmail">Email:</label>
+                            <input type="email" id="userEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Senha:</label>
+                            <input type="password" id="userPassword" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userConfirmPassword">Confirmar Senha:</label>
+                            <input type="password" id="userConfirmPassword" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTaskModalLabel">Editar Tarefa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTaskForm">
+                        <input type="hidden" id="editTaskId">
+                        <div class="form-group">
+                            <label for="editTitle">Título:</label>
+                            <input type="text" id="editTitle" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDescription">Descrição:</label>
+                            <textarea id="editDescription" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDateLimit">Dia Limite:</label>
+                            <input type="datetime-local" id="editDateLimit" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPriority">Prioridade:</label>
+                            <select id="editPriority" class="form-control" required>
+                                <option value="alta">Alta</option>
+                                <option value="baixa">Baixa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" id="editIsCompleted" class="form-check-input">
+                                <label for="editIsCompleted" class="form-check-label">Completo</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">Editar Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUserForm">
+                        <input type="hidden" id="editUserId">
+                        <div class="form-group">
+                            <label for="editName">Nome:</label>
+                            <input type="text" id="editName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Email:</label>
+                            <input type="email" id="editEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPassword">Senha:</label>
+                            <input type="password" id="editPassword" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editUserModalYourself" tabindex="-1" role="dialog" aria-labelledby="editUserModalYourselfLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalYourselfLabel">Editar Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUserYForm">
+                        <input type="hidden" id="editUserYId">
+                        <div class="form-group">
+                            <label for="editNameY">Nome:</label>
+                            <input type="text" id="editNameY" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmailY">Email:</label>
+                            <input type="email" id="editEmailY" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPasswordY">Senha Atual:</label>
+                            <input type="password" id="editPasswordY" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editNewPasswordY">Nova Senha:</label>
+                            <input type="password" id="editNewPasswordY" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="errorMessage">
+                    <!-- Mensagem de erro será inserida aqui -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./js/scriptPI.js"></script>
+</body>
+
+</html>
